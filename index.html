@@ -3,50 +3,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="bmstable" content="https://namelessteddy.github.io/bmsworld/header.json">
-    <title>発狂BMS難易度表</title>
+    <title>BMS World</title>
     <style>
-        body{font-family:system-ui,Segoe UI,Arial,Helvetica,sans-serif;padding:20px}
-        table{border-collapse:collapse;width:100%;max-width:1200px}
-        th,td{border:1px solid #ddd;padding:6px 8px;text-align:left;vertical-align:top}
-        th{background:#f7f7f7}
+        body{font-family:system-ui,Segoe UI,Arial,Helvetica,sans-serif;padding:40px;max-width:600px;margin:0 auto}
+        h1{margin-bottom:8px}
+        ul{padding-left:20px;line-height:2}
         a{color:#0366d6}
-        pre{white-space:pre-wrap}
     </style>
 </head>
 <body>
-    <h1>発狂BMS難易度表</h1>
-    <p>Raw JSON: <a href="./data.json" target="_blank">data.json</a></p>
-    <table id="tbl">
-        <thead></thead>
-        <tbody></tbody>
-    </table>
-    <script>
-        async function build(){
-            const res = await fetch('./data.json');
-            const data = await res.json();
-            const arr = Array.isArray(data) ? data : (Array.isArray(data.items) ? data.items : Object.values(data));
-            if(!arr || arr.length === 0){ document.getElementById('tbl').innerText = 'No data found'; return; }
-            const keys = Array.from(arr.reduce((s, o) => { Object.keys(o).forEach(k => s.add(k)); return s; }, new Set()));
-            const thead = document.querySelector('#tbl thead');
-            const hdr = document.createElement('tr');
-            keys.forEach(k => { const th = document.createElement('th'); th.textContent = k; hdr.appendChild(th); });
-            thead.appendChild(hdr);
-            const tbody = document.querySelector('#tbl tbody');
-            arr.forEach(row => {
-                const tr = document.createElement('tr');
-                keys.forEach(k => {
-                    const td = document.createElement('td');
-                    const v = row[k] ?? '';
-                    if(k.toLowerCase().includes('url') && v){ const a = document.createElement('a'); a.href = v; a.target = '_blank'; a.textContent = v; td.appendChild(a); }
-                    else if(k === 'level' && v !== '') td.textContent = '★' + v;
-                    else td.textContent = v;
-                    tr.appendChild(td);
-                });
-                tbody.appendChild(tr);
-            });
-        }
-        build().catch(e => { document.body.insertAdjacentHTML('beforeend', '<pre>' + e + '</pre>'); });
-    </script>
+    <h1>BMS World</h1>
+    <p>Difficulty tables:</p>
+    <ul>
+        <li><a href="./insane1/">発狂BMS難易度表 (★)</a></li>
+    </ul>
 </body>
 </html>
