@@ -27,6 +27,12 @@
             const data = await res.json();
             const arr = Array.isArray(data) ? data : (Array.isArray(data.items) ? data.items : Object.values(data));
             if(!arr || arr.length === 0){ document.getElementById('tbl').innerText = 'No data found'; return; }
+            arr.sort((a, b) => {
+                const lvA = parseFloat(a.level ?? 0) || 0;
+                const lvB = parseFloat(b.level ?? 0) || 0;
+                if(lvA !== lvB) return lvA - lvB;
+                return (a.title ?? '').localeCompare(b.title ?? '', undefined, {sensitivity: 'base'});
+            });
             const keys = Array.from(arr.reduce((s, o) => { Object.keys(o).forEach(k => s.add(k)); return s; }, new Set()));
             const thead = document.querySelector('#tbl thead');
             const hdr = document.createElement('tr');
