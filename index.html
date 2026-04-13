@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>BMS Table — dduong259.github.io</title>
+    <meta name="bmstable" content="https://namelessteddy.github.io/bmsworld/header.json">
+    <title>BMS World Insane Table</title>
     <style>
         body{font-family:system-ui,Segoe UI,Arial,Helvetica,sans-serif;padding:20px}
         table{border-collapse:collapse;width:100%;max-width:1200px}
@@ -14,7 +15,7 @@
     </style>
 </head>
 <body>
-    <h1>BMS Table</h1>
+    <h1>BMS World Insane Table</h1>
     <p>Raw JSON: <a href="./data.json" target="_blank">data.json</a></p>
     <table id="tbl">
         <thead></thead>
@@ -38,6 +39,7 @@
                     const td = document.createElement('td');
                     const v = row[k] ?? '';
                     if(k.toLowerCase().includes('url') && v){ const a = document.createElement('a'); a.href = v; a.target = '_blank'; a.textContent = v; td.appendChild(a); }
+                    else if(k === 'level' && v !== '') td.textContent = '★' + v;
                     else td.textContent = v;
                     tr.appendChild(td);
                 });
