@@ -2,6 +2,8 @@
 
 A simple static site that hosts BMS difficulty tables, intended to be used with BMS players that support the `bmstable` meta tag (e.g. LR2, beatoraja).
 
+I may end up adding a table of my personal chart recommendations in the future, but for now readers can consider this as currently not being maintained.
+
 Hosted at: https://namelessteddy.github.io/bmsworld/
 
 ## Structure
